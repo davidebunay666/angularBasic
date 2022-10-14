@@ -12,6 +12,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class HeroService {
   
   private heroesUrl = 'api/heroes';  // URL to web api
+  //private heroesUrl = 'http://localhost:8080/prueba/';
   constructor(private http: HttpClient,private messageService: MessageService) { }
 
 
@@ -25,6 +26,7 @@ export class HeroService {
       catchError(this.handleError<Hero[]>('getHeroes', []))
     );
   }
+
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url).pipe(
